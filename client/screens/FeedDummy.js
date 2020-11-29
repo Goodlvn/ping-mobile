@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, View } from 'react-native'
 
-import { globalStyles } from '../styles';
+import { globalStyles } from '../styles/global';
 
-export default function Feed({navigation}) {
+export default function FeedDummy({navigation}) {
   return (
     <View style={globalStyles.container}>
       <Button title="Ping 1" onPress={() => navigation.navigate("Single Ping")} />

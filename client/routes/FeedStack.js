@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Feed from './Screens/Feed';
-import SinglePing from './Screens/SinglePing';
+import Feed from '../screens/FeedDummy';
+import SinglePing from '../screens/SinglePing';
 
 export default function FeedStack() {
   const {Navigator, Screen} = createStackNavigator();

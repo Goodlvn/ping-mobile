@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: status.currentHeight || 0,
+        marginTop: 0
     },
     header: {
         backgroundColor: "#999895",
         height: 150,
         width: "100%",
-        position: "fixed",
+        position: "relative",
         top: 0,
         justifyContent: 'center',
         zIndex: 500
