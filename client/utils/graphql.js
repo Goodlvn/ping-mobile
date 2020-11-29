@@ -28,6 +28,37 @@ getPings {
 }
 `;
 
+export const FETCH_PING_QUERY = gql`
+  query getPing($pingId: ID!) {
+    getPing(pingId: $pingId) {
+      id
+      body
+      location {
+        type
+        coordinates
+      }
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      comments {
+        id
+        createdAt
+        body
+        author {
+          id
+          username
+          imageUrl
+        }
+      }
+      supportCount
+    }
+  }
+`;
+
 export const REGISTER_USER = gql`
   mutation register(
     $username: String!
