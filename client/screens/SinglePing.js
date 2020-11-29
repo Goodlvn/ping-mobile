@@ -1,10 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
 
-export default function SinglePing() {
+export default function SinglePing({ route: { params } }) {
   return (
     <View>
       <Text>Single Ping</Text>
     </View>
-  )
+  );
 }

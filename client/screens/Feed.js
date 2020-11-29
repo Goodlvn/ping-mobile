@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client"
 import { FETCH_PINGS_QUERY } from '../utils/graphql';
 
 
-export default function Feed() {
+export default function Feed({navigation}) {
     const { data } = useQuery(FETCH_PINGS_QUERY);
     const [selectedId, setSelectedId] = useState(null);
 
@@ -17,11 +17,12 @@ export default function Feed() {
         const backgroundColor = item.id === selectedId ? "#BCE9D1" : "#D5E2F0";
 
         return (
+          <TouchableOpacity onPress={() => navigation.navigate("Single Ping", item.id)}>
             <Ping
                 item={item}
-                onPress={() => setSelectedId(item.id)}
                 style={{ backgroundColor }}
             />
+          </TouchableOpacity>
         );
     };
 
