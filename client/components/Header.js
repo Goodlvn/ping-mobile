@@ -8,16 +8,27 @@ export default function Header({navigation, title}) {
   }
 
   return (
-    <View>
-      <MaterialIcons name="menu" size={28} />
-      <Text>{title}</Text>
+    <View style={styles.header}>
+      <MaterialIcons style={styles.icon} name="menu" size={28} />
+      <Text style={styles.headerText}>{title}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   header: {
-
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
-
+  icon: {
+    position: "absolute",
+    left: 16
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333",
+    letterSpacing: 1
+  }
 })
