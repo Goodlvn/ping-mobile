@@ -6,27 +6,30 @@ import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import Landing from "../screens/Landing";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import Feed from "../screens/Feed";
+import HomeDrawer from "./HomeDrawer";
 import { useAuthContext } from "../utils/useAuthContext";
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default function AppNavigator() {
   const { user } = useAuthContext();
-  console.log(user);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <NavigationContainer>
         <Navigator>
           {user ? (
-            <Screen name="Home" options={{ headerShown: false }} component={Feed} />
+            <Screen
+              name="Home"
+              component={HomeDrawer}
+              options={{ headerShown: false }}
+            />
           ) : (
               <>
                 <Screen
                   name="Landing"
                   component={Landing}
-                  options={{ headerShown: false }}
+                  options={{ headerShown: false, animationTypeForReplace: "pop" }}
                 />
                 <Screen name="Login" component={Login} />
                 <Screen name="Register" component={Register} />
