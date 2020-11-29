@@ -16,7 +16,7 @@ export default function Header({ navigation, title }) {
         onPress={handlePress}
       />
       <View style={styles.headerTitle}>
-        <Image style={styles.headerImg} source={require("../assets/nodes.png")}/>
+        <Image style={styles.headerLogo} source={require("../assets/nodes.png")}/>
         <Text style={styles.headerText}>{title}</Text>
       </View>
     </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     flexDirection: "row"
   },
-  headerImg: {
+  headerLogo: {
     height: 25,
     width: 25,
     marginHorizontal: 10,
