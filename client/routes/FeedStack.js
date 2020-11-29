@@ -18,8 +18,9 @@ export default function FeedStack({ navigation }) {
         name="Feed"
         component={Feed}
         options={{
-          headerTitle: () => <Header navigation={navigation} title="Ping Feed" />,
-          headerRight: () => <Button onPress={logout} title="Logout" />,
+          headerTitle: () => (
+            <Header navigation={navigation} title="Ping Feed" />
+          ),
         }}
       />
       <Screen name="Single Ping" component={SinglePing} />
