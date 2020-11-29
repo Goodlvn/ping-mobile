@@ -2,10 +2,10 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 
-export default function Ping({ onPress, item, children }) {
+export default function Ping({ item, children }) {
   return (
     <View style={[styles.item]}>
-      <TouchableOpacity onPress={onPress} underlayColor="white">
+      <TouchableOpacity underlayColor="white">
         <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
           <Avatar
             onPress={() => console.log("I am an avatart")}

@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useQuery } from '@apollo/client';
 
+import Ping from '../components/Ping';
+import PingIcons from '../components/PingIcons';
 import { FETCH_PING_QUERY } from '../utils/graphql';
 
 export default function SinglePing({ route: { params } }) {
@@ -12,8 +14,12 @@ export default function SinglePing({ route: { params } }) {
   }
 
   return (
-    <View>
-      <Text>Single Ping</Text>
-    </View>
+    <>
+      {data ? (
+        <Ping item={data.getPing} />
+      ) : (
+        <Text> Loading</Text>
+      )}
+    </>
   );
 }
