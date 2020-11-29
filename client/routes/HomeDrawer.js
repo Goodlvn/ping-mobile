@@ -6,7 +6,7 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
-import FeedStack from "./FeedStack";
+import PingsStack from "./PingsStack";
 import UserSettingsStack from "./UserSettingsStack";
 import { useAuthContext } from "../utils/useAuthContext";
 
@@ -26,7 +26,7 @@ export default function HomeDrawer() {
 
   return (
     <Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
-      <Screen name="Feed" component={FeedStack} />
+      <Screen name="Feed" component={PingsStack} />
       <Screen name="User Settings" component={UserSettingsStack} />
     </Navigator>
   );

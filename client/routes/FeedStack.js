@@ -11,7 +11,7 @@ export default function FeedStack({ navigation }) {
   return (
     <Navigator>
       <Screen
-        name="Feed"
+        name="Pings List"
         component={Feed}
         options={{
           headerTitle: () => (
