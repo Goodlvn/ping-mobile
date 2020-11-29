@@ -6,7 +6,7 @@ import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import Landing from "../screens/Landing";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import FeedDummy from "../screens/FeedDummy";
+import Feed from "../screens/Feed";
 import { useAuthContext } from "../utils/useAuthContext";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -20,18 +20,18 @@ export default function AppNavigator() {
       <NavigationContainer>
         <Navigator>
           {user ? (
-            <Screen name="Home" component={FeedDummy} />
+            <Screen name="Home" options={{ headerShown: false }} component={Feed} />
           ) : (
-            <>
-              <Screen
-                name="Landing"
-                component={Landing}
-                options={{ headerShown: false }}
-              />
-              <Screen name="Login" component={Login} />
-              <Screen name="Register" component={Register} />
-            </>
-          )}
+              <>
+                <Screen
+                  name="Landing"
+                  component={Landing}
+                  options={{ headerShown: false }}
+                />
+                <Screen name="Login" component={Login} />
+                <Screen name="Register" component={Register} />
+              </>
+            )}
         </Navigator>
       </NavigationContainer>
     </TouchableWithoutFeedback>
