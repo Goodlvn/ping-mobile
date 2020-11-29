@@ -20,7 +20,7 @@ export default function Feed({ navigation }) {
       <TouchableOpacity
         onPress={() => navigation.navigate("Single Ping", item.id)}
       >
-        <Ping item={item}>
+        <Ping item={item} background={{ backgroundColor: "#D5E2F0" }}>
           <PingIcons />
         </Ping>
       </TouchableOpacity>
@@ -48,8 +48,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
     marginTop: 0,
   },
   logo: {

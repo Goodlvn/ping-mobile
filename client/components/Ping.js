@@ -2,9 +2,9 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 
-export default function Ping({ item, children }) {
+export default function Ping({ item, children, background }) {
   return (
-    <View style={[styles.item]}>
+    <View style={[styles.item, background]}>
       <TouchableOpacity underlayColor="white">
         <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
           <Avatar
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "#bbb",
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "column",
-    backgroundColor: "#D5E2F0"
   },
   username: {
     fontSize: 18,
