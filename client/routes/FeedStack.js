@@ -3,12 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Button } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import Feed from "../screens/FeedDummy";
+import Feed from "../screens/Feed";
 import SinglePing from "../screens/SinglePing";
 import Header from "../components/Header";
 import { useAuthContext } from "../utils/useAuthContext";
 
-export default function FeedStack({navigation}) {
+export default function FeedStack({ navigation }) {
   const { Navigator, Screen } = createStackNavigator();
   const { logout } = useAuthContext();
 
@@ -18,7 +18,7 @@ export default function FeedStack({navigation}) {
         name="Feed"
         component={Feed}
         options={{
-          headerTitle: () => <Header navigation={navigation} title="Ping Feed"/>,
+          headerTitle: () => <Header navigation={navigation} title="Ping Feed" />,
           headerRight: () => <Button onPress={logout} title="Logout" />,
         }}
       />

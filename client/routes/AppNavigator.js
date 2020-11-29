@@ -6,7 +6,6 @@ import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import Landing from "../screens/Landing";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import FeedDummy from "../screens/FeedDummy";
 import HomeDrawer from "./HomeDrawer";
 import { useAuthContext } from "../utils/useAuthContext";
 
@@ -26,16 +25,16 @@ export default function AppNavigator() {
               options={{ headerShown: false }}
             />
           ) : (
-            <>
-              <Screen
-                name="Landing"
-                component={Landing}
-                options={{ headerShown: false, animationTypeForReplace: "pop" }}
-              />
-              <Screen name="Login" component={Login} />
-              <Screen name="Register" component={Register} />
-            </>
-          )}
+              <>
+                <Screen
+                  name="Landing"
+                  component={Landing}
+                  options={{ headerShown: false, animationTypeForReplace: "pop" }}
+                />
+                <Screen name="Login" component={Login} />
+                <Screen name="Register" component={Register} />
+              </>
+            )}
         </Navigator>
       </NavigationContainer>
     </TouchableWithoutFeedback>
