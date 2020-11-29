@@ -2,18 +2,16 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native';
 
-import Feed from '../screens/FeedDummy';
-import SinglePing from '../screens/SinglePing';
+import UserSettings from '../screens/UserSettings';
 import { useAuthContext } from '../utils/useAuthContext';
 
-export default function FeedStack() {
+export default function UserSettingsStack() {
   const {Navigator, Screen} = createStackNavigator();
   const { logout } = useAuthContext();
 
   return (
     <Navigator >
-      <Screen name="Feed" component={Feed} options={{headerRight: () => (<Button onPress={logout} title="Logout" />)}} />
-      <Screen name="Single Ping" component={SinglePing} />
+      <Screen name="Settings" component={UserSettings} options={{headerRight: () => (<Button onPress={logout} title="Logout" />)}} />
     </Navigator>
   )
 }

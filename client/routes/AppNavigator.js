@@ -7,25 +7,26 @@ import Landing from "../screens/Landing";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import FeedDummy from "../screens/FeedDummy";
+import HomeDrawer from './HomeDrawer';
 import { useAuthContext } from "../utils/useAuthContext";
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default function AppNavigator() {
-  const { user, logout } = useAuthContext();
+  const { user } = useAuthContext();
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <NavigationContainer>
         <Navigator>
           {user ? (
-            <Screen name="Home" component={FeedDummy} options={{headerRight: () => (<Button onPress={logout} title="Logout" />)}}/>
+            <Screen name="Home" component={HomeDrawer} options={{headerShown: false}}/>
           ) : (
             <>
               <Screen
                 name="Landing"
                 component={Landing}
-                options={{ headerShown: false }}
+                options={{ headerShown: false, animationTypeForReplace: "pop" }}
               />
               <Screen name="Login" component={Login} />
               <Screen name="Register" component={Register} />
