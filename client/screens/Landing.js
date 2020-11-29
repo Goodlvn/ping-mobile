@@ -4,6 +4,7 @@ import { Text, Button, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 export default function Landing({navigation}) {
+  
   return (
     <View style={globalStyles.container}>
       <Text>Ping</Text>

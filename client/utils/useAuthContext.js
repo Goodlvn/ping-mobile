@@ -11,17 +11,20 @@ const AuthContext = React.createContext({
 const initialState = { user: null };
 
 // if AsyncStorage has a jwt token from the previous login then we set the user property of initial state to the decoded token. also check if the token has expired or not
-const getToken = async() => {
-  const token = await AsyncStorage.getItem("jwtToken");
+// const getToken = async() => {
+  const token = localStorage.getItem("jwtToken");
+  // const token = await AsyncStorage.getItem("jwtToken");
   if (token) {
     const decodedToken = jwtDecode(token);
     if (decodedToken.exp * 1000 < Date.now()) {
-      await AsyncStorage.removeItem("jwtToken");
+      localStorage.removeItem("jwtToken");
+      // await AsyncStorage.removeItem("jwtToken");
     } else {
       initialState.user = decodedToken;
     }
   }
-}
+// }
+// getToken();
 
 function reducer(state, { type, payload }) {
   switch (type) {
@@ -44,12 +47,15 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   async function login(userData) {
-    await AsyncStorage.setItem("jwtToken", userData.token);
+    const storedToken = localStorage.setItem("jwtToken", userData.token);
+    // const storedToken = await AsyncStorage.setItem("jwtToken", userData.token);
+    console.log(storedToken);
     dispatch({ type: "LOGIN", payload: userData });
   }
 
   async function logout() {
-    await AsyncStorage.removeItem("jwtToken");
+    localStorage.removeItem("jwtToken");
+    // await AsyncStorage.removeItem("jwtToken");
     dispatch({ type: "LOGOUT" });
   }
 
