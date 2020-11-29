@@ -1,28 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { View, Image, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Avatar } from "react-native-elements";
-import { Appbar } from 'react-native-paper';
+import Ping from "../components/Ping";
 
 
 import { useQuery } from "@apollo/client"
 import { FETCH_PINGS_QUERY } from '../utils/graphql';
-
-const Item = ({ item, onPress, style }) => (
-
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-        <Avatar
-            onPress={() => console.log("I am an avatart")}
-            size="medium"
-            rounded
-            source={{
-                uri:
-                    'https://picsum.photos/200',
-            }}
-        />
-        <Text style={styles.username}>@username</Text>
-        <Text style={styles.body}>{item.body}</Text>
-    </TouchableOpacity >
-);
 
 
 export default function Feed() {
@@ -35,7 +17,7 @@ export default function Feed() {
         const backgroundColor = item.id === selectedId ? "#BCE9D1" : "#D5E2F0";
 
         return (
-            <Item
+            <Ping
                 item={item}
                 onPress={() => setSelectedId(item.id)}
                 style={{ backgroundColor }}
@@ -46,10 +28,7 @@ export default function Feed() {
     console.log("Houston, the eagle has landed 🚀");
     return (
         <View style={styles.container}>
-            <Appbar style={styles.header}>
-                <Image style={styles.logo} source={require("../assets/nodes.png")} />
-                <Text>RAW FEED</Text>
-            </Appbar>
+
             {data ? <FlatList
                 style={styles.feed}
                 data={data.getPings}
@@ -71,15 +50,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 0
     },
-    header: {
-        backgroundColor: "#D5E2F0",
-        height: 150,
-        width: "100%",
-        position: "fixed",
-        top: 0,
-        justifyContent: 'center',
-        zIndex: 500
-    },
     logo: {
         width: 50,
         height: 50
@@ -97,7 +67,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     feed: {
-        marginTop: 150,
+        marginTop: 0,
     },
 
 });
