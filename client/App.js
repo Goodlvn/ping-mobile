@@ -11,7 +11,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <View style={styles.container}>
-        <AuthStack />
+        {/* <AuthStack /> */}
         <FeedBottomTabs />
       </View>
     </ApolloProvider>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, View } from 'react-native';
 
+import { globalStyles } from '../styles';
+
 export default function Map({navigation}) {
   return (
     <View style={globalStyles.container}>
