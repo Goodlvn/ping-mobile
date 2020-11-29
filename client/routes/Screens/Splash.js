@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native';
 
-import { globalStyles } from './styles';
+import { globalStyles } from '../styles';
 
 export default function Splash() {
   return (
