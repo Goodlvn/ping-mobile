@@ -4,6 +4,7 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from './ApolloProvider';
 
 import AuthStack from './routes/AuthStack';
+import FeedBottomTabs from './routes/FeedBottomTabs';
 
 export default function App() {
 
@@ -11,6 +12,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <View style={styles.container}>
         <AuthStack />
+        <FeedBottomTabs />
       </View>
     </ApolloProvider>
   );
