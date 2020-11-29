@@ -13,6 +13,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export default function AppNavigator() {
   const { user } = useAuthContext();
+  console.log(user);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

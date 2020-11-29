@@ -1,30 +1,12 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AuthContext = React.createContext({
   user: null,
   login: (userData) => {},
   logout: () => {},
 });
-
-const initialState = { user: null };
-
-// if AsyncStorage has a jwt token from the previous login then we set the user property of initial state to the decoded token. also check if the token has expired or not
-// const getToken = async() => {
-  const token = localStorage.getItem("jwtToken");
-  // const token = await AsyncStorage.getItem("jwtToken");
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    if (decodedToken.exp * 1000 < Date.now()) {
-      localStorage.removeItem("jwtToken");
-      // await AsyncStorage.removeItem("jwtToken");
-    } else {
-      initialState.user = decodedToken;
-    }
-  }
-// }
-// getToken();
 
 function reducer(state, { type, payload }) {
   switch (type) {
@@ -44,18 +26,31 @@ function reducer(state, { type, payload }) {
 }
 
 function AuthProvider(props) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {});
+
+  useEffect(() => {
+    // if AsyncStorage has a jwt token from the previous login then we set the user property of initial state to the decoded token. also check if the token has expired or not
+    async function checkUser() {
+      const token = await AsyncStorage.getItem("jwtToken");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.exp * 1000 < Date.now()) {
+          await AsyncStorage.removeItem("jwtToken");
+        } else {
+          dispatch({ type: "LOGIN", payload: decodedToken });
+        }
+      }
+    }
+    checkUser();
+  }, []);
 
   async function login(userData) {
-    const storedToken = localStorage.setItem("jwtToken", userData.token);
-    // const storedToken = await AsyncStorage.setItem("jwtToken", userData.token);
-    console.log(storedToken);
+    await AsyncStorage.setItem("jwtToken", userData.token);
     dispatch({ type: "LOGIN", payload: userData });
   }
 
   async function logout() {
-    localStorage.removeItem("jwtToken");
-    // await AsyncStorage.removeItem("jwtToken");
+    await AsyncStorage.removeItem("jwtToken");
     dispatch({ type: "LOGOUT" });
   }
 
