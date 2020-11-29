@@ -1,79 +1,80 @@
-import React, { useEffect, useState } from 'react'
-import { View, Image, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React from "react";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import Ping from "../components/Ping";
+import PingIcons from "../components/PingIcons";
 
+import { useQuery } from "@apollo/client";
+import { FETCH_PINGS_QUERY } from "../utils/graphql";
 
-import { useQuery } from "@apollo/client"
-import { FETCH_PINGS_QUERY } from '../utils/graphql';
+export default function Feed({ navigation }) {
+  const { data } = useQuery(FETCH_PINGS_QUERY);
 
-
-export default function Feed({navigation}) {
-    const { data } = useQuery(FETCH_PINGS_QUERY);
-    const [selectedId, setSelectedId] = useState(null);
-
-    if (data) { console.log(data) };
-
-    const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#BCE9D1" : "#D5E2F0";
-
-        return (
-          <TouchableOpacity onPress={() => navigation.navigate("Single Ping", item.id)}>
-            <Ping
-                item={item}
-                style={{ backgroundColor }}
-            />
-          </TouchableOpacity>
-        );
-    };
-
-    console.log("Houston, the eagle has landed 🚀");
+  const renderItem = ({ item }) => {
     return (
-        <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Single Ping", item.id)}
+      >
+        <Ping item={item}>
+          <PingIcons />
+        </Ping>
+      </TouchableOpacity>
+    );
+  };
 
-            {data ? <FlatList
-                style={styles.feed}
-                data={data.getPings}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                extraData={selectedId}
-            /> : <Text>TEST THE LIST</Text>}
-
-
-        </View>
-    )
+  console.log("Houston, the eagle has landed 🚀");
+  return (
+    <View style={styles.container}>
+      {data ? (
+        <FlatList
+          style={styles.feed}
+          data={data.getPings}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <Text>TEST THE LIST</Text>
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 0
-    },
-    logo: {
-        width: 50,
-        height: 50
-    },
-    item: {
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        flexDirection: "row"
-    },
-    username: {
-        fontSize: 23,
-    },
-    body: {
-        marginTop: 15,
-    },
-    feed: {
-        marginTop: 0,
-    },
-
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 0,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+  },
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    flexDirection: "row",
+  },
+  username: {
+    fontSize: 23,
+  },
+  body: {
+    marginTop: 15,
+  },
+  feed: {
+    marginTop: 0,
+  },
 });
 
-{/* <FlatList
+{
+  /* <FlatList
     data={this.props.tweets}
     keyExtractor={this._keyExtractor}
     renderItem={({ item }) => (
@@ -193,4 +194,5 @@ const styles = StyleSheet.create({
             </View>
         )
 
-/> */}
+/> */
+}
