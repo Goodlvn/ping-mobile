@@ -1,25 +1,32 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Button } from "react-native";
 
+import SettingsOptions from '../screens/SettingsOptions';
 import UserSettings from "../screens/UserSettings";
+import DeleteUser from "../screens/DeleteUser";
 import Header from "../components/Header";
-import { useAuthContext } from "../utils/useAuthContext";
 
 export default function UserSettingsStack({ navigation }) {
   const { Navigator, Screen } = createStackNavigator();
-  const { logout } = useAuthContext();
 
   return (
     <Navigator>
       <Screen
-        name="Settings"
-        component={UserSettings}
+        name="Options"
+        component={SettingsOptions}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation} title="User Settings" />
+            <Header navigation={navigation} title="Settings" />
           ),
         }}
+      />
+      <Screen
+        name="Settings"
+        component={UserSettings}
+      />
+      <Screen
+        name="Delete"
+        component={DeleteUser}
       />
     </Navigator>
   );
