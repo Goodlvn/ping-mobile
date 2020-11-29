@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableWithoutFeedback, Keyboard } from "react-native";
+import { TouchableWithoutFeedback, Keyboard, Button } from "react-native";
 
 import Landing from "../screens/Landing";
 import Login from "../screens/Login";
@@ -12,15 +12,14 @@ import { useAuthContext } from "../utils/useAuthContext";
 const { Navigator, Screen } = createStackNavigator();
 
 export default function AppNavigator() {
-  const { user } = useAuthContext();
-  console.log(user);
+  const { user, logout } = useAuthContext();
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <NavigationContainer>
         <Navigator>
           {user ? (
-            <Screen name="Home" component={FeedDummy} />
+            <Screen name="Home" component={FeedDummy} options={{headerRight: () => (<Button onPress={logout} title="Logout" />)}}/>
           ) : (
             <>
               <Screen
