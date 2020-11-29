@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
 import { Avatar } from "react-native-elements";
-import { Ionicons } from '@expo/vector-icons';
+import PingIcons from "./PingIcons";
 
 
 export default function Ping({ onPress, style, item }) {
@@ -27,18 +27,7 @@ export default function Ping({ onPress, style, item }) {
                 </View>
             </TouchableOpacity >
             <Text style={styles.body}>{item.body}</Text>
-
-
-            <View style={{ flexDirection: "row", justifyContent: "center" }}>
-                {/* Support icon and count */}
-                <View >
-                    <Ionicons name="ios-heart" size={15} color="black" />
-                    <Text />
-                </View>
-                {/* Comment icon and count */}
-                {/* Content Type */}
-            </View>
-
+            <PingIcons />
         </View>
     )
 }
@@ -63,7 +52,7 @@ const styles = StyleSheet.create({
     },
     time: {
         fontSize: 15,
-        color: "#aaa"
+        color: "#717378"
     },
     body: {
         marginTop: 10,
@@ -75,6 +64,10 @@ const styles = StyleSheet.create({
     },
     avatar: {
         margin: 3
+    },
+    icon: {
+        marginLeft: 20,
+        marginRight: 2
     }
 
 });
