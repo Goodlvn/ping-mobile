@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Map from './Screens/Map';
-import SinglePing from './Screens/SinglePing';
+import Map from '../screens/Map';
+import SinglePing from '../screens/SinglePing';
 
 export default function MapStack() {
   const {Navigator, Screen} = createStackNavigator();

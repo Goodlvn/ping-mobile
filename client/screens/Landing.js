@@ -1,9 +1,10 @@
 import React from 'react'
 import { Text, Button, View } from 'react-native';
 
-import { globalStyles } from '../styles';
+import { globalStyles } from '../styles/global';
 
-export default function GetStarted({navigation}) {
+export default function Landing({navigation}) {
+  
   return (
     <View style={globalStyles.container}>
       <Text>Ping</Text>
