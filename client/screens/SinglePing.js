@@ -13,7 +13,7 @@ export default function SinglePing({ route: { params } }) {
   });
 
   const renderComments = ({ item }) => {
-    return <Ping item={item} background={{ backgroundColor: "#fff" }}/>;
+    return <Ping item={item} background={{ backgroundColor: "#fff" }} />;
   };
 
   return (
@@ -23,6 +23,9 @@ export default function SinglePing({ route: { params } }) {
           <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
             <PingIcons />
           </Ping>
+          <View style={styles.commentsHeader}>
+            <Text style={styles.commentsText}>Comments</Text>
+          </View>
           <FlatList
             data={data.getPing.comments}
             renderItem={renderComments}
@@ -41,5 +44,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     marginTop: 0,
+  },
+  commentsHeader: {
+    textAlign: "center",
+    borderBottomColor: "#eee",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  commentsText: {
+    marginVertical: 10,
+    fontSize: 12,
+    fontWeight: "bold"
   }
-})
+});
