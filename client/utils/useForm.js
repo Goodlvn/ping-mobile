@@ -4,8 +4,7 @@ import axios from "axios";
 export const useForm = (callback, initialState = {}) => {
   const [values, setValues] = useState(initialState);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
+  function handleChange(name, value) {
 
     if (name === "imageUrl") {
       const file = e.target.files[0];
@@ -32,8 +31,7 @@ export const useForm = (callback, initialState = {}) => {
     };
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit() {
     let img = null;
     if(values.imageUrl) {
       img = await handleImageUpload();
