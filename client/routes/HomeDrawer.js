@@ -1,17 +1,17 @@
-import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Button } from 'react-native';
+import React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Button } from "react-native";
 
-import FeedStack from './FeedStack';
-import UserSettingsStack from './UserSettingsStack';
+import FeedStack from "./FeedStack";
+import UserSettingsStack from "./UserSettingsStack";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
 export default function HomeDrawer() {
   return (
-    <Navigator >
+    <Navigator>
       <Screen name="Feed" component={FeedStack} />
-      <Screen name="User Settings" component={UserSettingsStack}/>
+      <Screen name="User Settings" component={UserSettingsStack} />
     </Navigator>
-  )
+  );
 }

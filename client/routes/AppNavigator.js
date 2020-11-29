@@ -1,13 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableWithoutFeedback, Keyboard, Button } from "react-native";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 
 import Landing from "../screens/Landing";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import FeedDummy from "../screens/FeedDummy";
-import HomeDrawer from './HomeDrawer';
+import HomeDrawer from "./HomeDrawer";
 import { useAuthContext } from "../utils/useAuthContext";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -20,7 +20,11 @@ export default function AppNavigator() {
       <NavigationContainer>
         <Navigator>
           {user ? (
-            <Screen name="Home" component={HomeDrawer} options={{headerShown: false}}/>
+            <Screen
+              name="Home"
+              component={HomeDrawer}
+              options={{ headerShown: false }}
+            />
           ) : (
             <>
               <Screen
