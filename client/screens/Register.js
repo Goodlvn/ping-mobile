@@ -11,8 +11,16 @@ import { REGISTER_USER } from "../utils/graphql";
 export default function Register() {
   const authContext = useAuthContext();
   const [errors, setErrors] = useState({});
-  const initialState = { username: "", email: "", password: "", confirmPassword: "" };
-  const { handleChange, handleSubmit, values } = useForm(registerCb, initialState);
+  const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+  const { handleChange, handleSubmit, values } = useForm(
+    registerCb,
+    initialState
+  );
 
   const [addUser] = useMutation(REGISTER_USER, {
     variables: values,
@@ -21,8 +29,8 @@ export default function Register() {
     },
     update(_, result) {
       authContext.login(result.data.register);
-    }
-  })
+    },
+  });
 
   function registerCb() {
     addUser();
@@ -37,34 +45,42 @@ export default function Register() {
         error={errors.username ? true : false}
         onChangeText={(val) => handleChange("username", val)}
       />
-      <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+      <HelperText type="error" visible={errors.username ? true : false}>
+        {errors.username}
+      </HelperText>
       <TextInput
         label="Email"
         mode="outlined"
-        value={values.username}
-        error={errors.username ? true : false}
-        onChangeText={(val) => handleChange("username", val)}
+        value={values.email}
+        error={errors.email ? true : false}
+        onChangeText={(val) => handleChange("email", val)}
       />
-      <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+      <HelperText type="error" visible={errors.email ? true : false}>
+        {errors.email}
+      </HelperText>
       <TextInput
         label="Password"
         mode="outlined"
-        value={values.username}
-        error={errors.username ? true : false}
-        onChangeText={(val) => handleChange("username", val)}
+        value={values.password}
+        error={errors.password ? true : false}
+        onChangeText={(val) => handleChange("password", val)}
       />
-      <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+      <HelperText type="error" visible={errors.password ? true : false}>
+        {errors.password}
+      </HelperText>
       <TextInput
         label="Confirm Password"
         mode="outlined"
-        value={values.username}
-        error={errors.username ? true : false}
-        onChangeText={(val) => handleChange("username", val)}
+        value={values.confirmPassword}
+        error={errors.confirmPassword ? true : false}
+        onChangeText={(val) => handleChange("confirmPassword", val)}
       />
-      <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+      <HelperText type="error" visible={errors.confirmPassword ? true : false}>
+        {errors.confirmPassword}
+      </HelperText>
       <Button
         title="Register"
-        onPress={() => console.log("create an account")}
+        onPress={handleSubmit}
       />
     </View>
   );
