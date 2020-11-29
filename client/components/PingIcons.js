@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
@@ -15,7 +16,7 @@ export default function PingIcons() {
                     size={15}
                     color="#F0271D"
                 />
-                <Text style={styles.count}>3</Text>
+                <Text style={styles.count}></Text>
             </View>
             {/* Comment icon and count */}
             <View style={{ flexDirection: "row" }}  >
