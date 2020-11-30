@@ -5,8 +5,8 @@ import { useMutation } from "@apollo/client";
 
 import { globalStyles } from "../styles/global";
 import { useAuthContext } from "../utils/useAuthContext";
-import Actions from '../utils/dashboardActions';
-import { useDashboardContext } from '../utils/useDashboardContext';
+import Actions from "../utils/dashboardActions";
+import { useDashboardContext } from "../utils/useDashboardContext";
 import { useForm } from "../utils/useForm";
 import { LOGIN_USER } from "../utils/graphql";
 
@@ -24,8 +24,8 @@ export default function Login() {
     },
     update(_, result) {
       authContext.login(result.data.login);
-      dispatch({ type: Actions.SELECT_USER, payload: result.data.login})
-    }
+      dispatch({ type: Actions.SELECT_USER, payload: result.data.login });
+    },
   });
 
   function loginCb() {
@@ -43,7 +43,9 @@ export default function Login() {
           error={errors.username ? true : false}
           onChangeText={(val) => handleChange("username", val)}
         />
-        <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+        <HelperText type="error" visible={errors.username ? true : false}>
+          {errors.username}
+        </HelperText>
         <TextInput
           label="Password"
           mode="outlined"
@@ -52,7 +54,9 @@ export default function Login() {
           error={errors.password ? true : false}
           onChangeText={(val) => handleChange("password", val)}
         />
-        <HelperText type="error" visible={errors.password ? true : false}>{errors.password}</HelperText>
+        <HelperText type="error" visible={errors.password ? true : false}>
+          {errors.password}
+        </HelperText>
         <Button title="Login" onPress={handleSubmit} />
       </ScrollView>
     </View>

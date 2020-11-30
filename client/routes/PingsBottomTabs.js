@@ -1,8 +1,8 @@
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import FeedStack from './FeedStack';
-import MapStack from './MapStack';
+import FeedStack from "./FeedStack";
+import MapStack from "./MapStack";
 
 export default function PingsBottomTabs() {
   const { Navigator, Screen } = createBottomTabNavigator();
@@ -12,5 +12,5 @@ export default function PingsBottomTabs() {
       <Screen name="WrittenPings" component={FeedStack} />
       <Screen name="MapPings" component={MapStack} />
     </Navigator>
-  )
+  );
 }

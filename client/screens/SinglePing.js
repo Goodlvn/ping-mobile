@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList, ScrollView, TextInput } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import { Input, Button } from "react-native-elements";
 import { useQuery, useMutation } from "@apollo/client";
 
@@ -19,14 +26,17 @@ export default function SinglePing({ route, route: { params } }) {
   });
 
   const initialState = { body: "" };
-  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
+  const { handleChange, handleSubmit, values, setValues } = useForm(
+    createCommentCb,
+    initialState
+  );
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
       pingId: params,
       body: values.body,
     },
     update() {
-      setValues(initialState)
+      setValues(initialState);
     },
   });
 
@@ -44,7 +54,10 @@ export default function SinglePing({ route, route: { params } }) {
         <>
           <View>
             <ScrollView styles={{ margin: 0, padding: 0 }}>
-              <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
+              <Ping
+                item={data.getPing}
+                background={{ backgroundColor: "#D5E2F0" }}
+              >
                 <PingIcons item={data.getPing} user={user} route={route} />
               </Ping>
             </ScrollView>
@@ -52,7 +65,7 @@ export default function SinglePing({ route, route: { params } }) {
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
           </View>
-          <View >
+          <View>
             <TextInput
               style={{ height: 50, borderColor: "#E0FFEE", borderWidth: 1 }}
               placeholder="Got something to say?"
@@ -70,8 +83,8 @@ export default function SinglePing({ route, route: { params } }) {
           />
         </>
       ) : (
-          <Text>Loading...</Text>
-        )}
+        <Text>Loading...</Text>
+      )}
     </View>
   );
 }
@@ -83,14 +96,13 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   commentsHeader: {
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomColor: "#eee",
-    marginBottom: -8
-
+    marginBottom: -8,
   },
   commentsText: {
     marginVertical: 10,
     fontSize: 12,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });

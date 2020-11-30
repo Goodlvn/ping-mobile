@@ -1,5 +1,5 @@
-import { WebSocketLink } from '@apollo/client/link/ws';
-import { getMainDefinition} from '@apollo/client/utilities';
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 import {
   split,
   ApolloClient,
@@ -26,7 +26,7 @@ const authHttpLink = authLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
   uri: "ws://localhost:8080/graphql",
-  options: { reconnect: true }
+  options: { reconnect: true },
 });
 
 const splitLink = split(
@@ -38,8 +38,8 @@ const splitLink = split(
     );
   },
   wsLink,
-  authHttpLink,
-)
+  authHttpLink
+);
 
 export const client = new ApolloClient({
   link: splitLink,

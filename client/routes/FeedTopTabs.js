@@ -14,7 +14,8 @@ export default function FeedTopTabs() {
     <Navigator>
       <Screen name="Supported" component={Feed} />
       <Screen name="Posted" component={Feed} />
-      {(state.selectedUser?.username === user.username || !state.selectedUser) && (
+      {(state.selectedUser?.username === user.username ||
+        !state.selectedUser) && (
         <>
           <Screen name="New" component={Feed} />
           <Screen name="All" component={Feed} />

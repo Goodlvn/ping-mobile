@@ -76,13 +76,13 @@ export default function Register() {
           error={errors.confirmPassword ? true : false}
           onChangeText={(val) => handleChange("confirmPassword", val)}
         />
-        <HelperText type="error" visible={errors.confirmPassword ? true : false}>
+        <HelperText
+          type="error"
+          visible={errors.confirmPassword ? true : false}
+        >
           {errors.confirmPassword}
         </HelperText>
-        <Button
-          title="Register"
-          onPress={handleSubmit}
-        />
+        <Button title="Register" onPress={handleSubmit} />
       </ScrollView>
     </View>
   );
@@ -90,6 +90,6 @@ export default function Register() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
-})
+    flex: 1,
+  },
+});

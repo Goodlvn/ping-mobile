@@ -26,21 +26,21 @@ export default function Feed({ navigation, route }) {
   useEffect(() => {
     load();
     const unsubscribe = newPingSubscription();
-    return () => unsubscribe()
+    return () => unsubscribe();
   }, []);
 
   function newPingSubscription() {
     return subscribeToMore({
       document: NEW_PING_SUBSCRIPTION,
       updateQuery: (prevPings, { subscriptionData }) => {
-        if(!subscriptionData) return prevPings;
+        if (!subscriptionData) return prevPings;
         const pingAdded = subscriptionData.data.newPing;
         return {
           ...prevPings,
-          getPings: [pingAdded, ...prevPings.getPings]
-        }
-      }
-    })
+          getPings: [pingAdded, ...prevPings.getPings],
+        };
+      },
+    });
   }
 
   async function load() {
@@ -107,7 +107,7 @@ export default function Feed({ navigation, route }) {
       </TouchableOpacity>
     );
   };
-  
+
   return (
     <View style={styles.container}>
       {data ? (

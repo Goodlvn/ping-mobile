@@ -5,7 +5,6 @@ export const useForm = (callback, initialState = {}) => {
   const [values, setValues] = useState(initialState);
 
   function handleChange(name, value) {
-
     if (name === "imageUrl") {
       const file = e.target.files[0];
       console.log(file);
@@ -13,8 +12,8 @@ export const useForm = (callback, initialState = {}) => {
     } else {
       setValues({
         ...values,
-        [name]: value
-      })
+        [name]: value,
+      });
     }
   }
 
@@ -26,8 +25,8 @@ export const useForm = (callback, initialState = {}) => {
       setValues({
         ...values,
         [name]: value,
-        imageUrl: [reader.result, file]
-      })
+        imageUrl: [reader.result, file],
+      });
     };
   }
 
