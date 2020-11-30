@@ -23,6 +23,7 @@ getPings {
         }
     }
     supportCount
+    dismissCount
     commentCount
 }
 }
@@ -61,6 +62,7 @@ export const FETCH_PING_QUERY = gql`
       }
     }
     supportCount
+    dismissCount
     commentCount
     }
   }
@@ -121,6 +123,7 @@ export const SUPPORT_PING = gql`
         }
       }
       supportCount
+      dismissCount
       commentCount
     }
   }

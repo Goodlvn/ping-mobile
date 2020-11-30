@@ -48,34 +48,43 @@ export default function PingIcons({ item, user, navigation, route }) {
       </TouchableOpacity>
 
       {/* Dissmiss Button icon and count */}
-      <View style={{ flexDirection: "row" }}>
-        <AntDesign
-          style={styles.icon}
-          name="minuscircle"
-          size={15}
-          color="#717378"
-          onPress={() => handleSupport(false)}
-        />
-      </View>
+      <TouchableOpacity onPress={() => handleSupport(false)}>
+        <View style={{ flexDirection: "row" }}>
+          <AntDesign
+            style={styles.icon}
+            name="minuscircle"
+            size={15}
+            color="#717378"
+          />
+          {item.dismissCount === 0 ? (
+            <Text></Text>
+          ) : (
+            <Text style={styles.count}>{item.dismissCount}</Text>
+          )}
+        </View>
+      </TouchableOpacity>
 
       {/* Comment icon and count */}
-      <View style={{ flexDirection: "row" }}>
-        <FontAwesome5
-          style={styles.icon}
-          name="comment"
-          size={15}
-          color="#717378"
-          onPress={() =>
-            route.name !== "Single Ping" &&
-            navigation.navigate("Single Ping", item.id)
-          }
-        />
-        {item.commentCount === 0 ? (
-          <Text></Text>
-        ) : (
-          <Text style={styles.count}>{item.commentCount}</Text>
-        )}
-      </View>
+      <TouchableOpacity
+        onPress={() =>
+          route.name !== "Single Ping" &&
+          navigation.navigate("Single Ping", item.id)
+        }
+      >
+        <View style={{ flexDirection: "row" }}>
+          <FontAwesome5
+            style={styles.icon}
+            name="comment"
+            size={15}
+            color="#717378"
+          />
+          {item.commentCount === 0 ? (
+            <Text></Text>
+          ) : (
+            <Text style={styles.count}>{item.commentCount}</Text>
+          )}
+        </View>
+      </TouchableOpacity>
       {/* Content Type */}
       <View style={{ flexDirection: "row" }}>
         {item.imageUrl ? (
