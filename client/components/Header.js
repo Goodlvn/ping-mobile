@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    // left: 16,
-    left: -150
+    left: 16,
+    // left: -150
     // NOTE: the placement allows it to work in ios simulator 
   },
   headerTitle: {
