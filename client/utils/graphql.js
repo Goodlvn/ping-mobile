@@ -115,3 +115,26 @@ export const SUPPORT_PING = gql`
     }
   }
 `;
+export const CREATE_PING = gql`
+  mutation createPing($body: String!, $imageUrl: String, $lat: Float!, $long: Float!) {
+    createPing(body: $body, imageUrl: $imageUrl, lat: $lat, long: $long) {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      support {
+        supported
+        user {
+          id
+        }
+      }
+      supportCount
+      commentCount
+    }
+  }
+`;
