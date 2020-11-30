@@ -11,17 +11,21 @@ import PingIcons from "../components/PingIcons";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
 
+
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
+import { useDashboardContext } from "../utils/useDashboardContext";
+import Actions from "../utils/dashboardActions";
 
 export default function Feed({ navigation, route }) {
+    const [state, dispatch] = useDashboardContext();
     const { data } = useQuery(FETCH_PINGS_QUERY);
     const { user } = useAuthContext();
 
     useEffect(() => {
         load();
-    }, [])
+    }, [user]);
 
     async function load() {
         try {
@@ -36,14 +40,11 @@ export default function Feed({ navigation, route }) {
 
             const { latitude, longitude } = await location.coords
 
-            console.log(latitude, longitude);
-
+            dispatch({ type: Actions.UPDATE_USER_POSITION, payload: { latitude, longitude } })
         } catch (err) {
 
         }
     }
-
-
 
 
     const supportedPings = data?.getPings.filter((ping) => {
