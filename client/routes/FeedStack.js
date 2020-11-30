@@ -5,7 +5,7 @@ import SinglePing from "../screens/SinglePing";
 import Header from "../components/Header";
 import FeedTopTabs from "./FeedTopTabs";
 
-export default function FeedStack({ navigation }) {
+export default function FeedStack({ navigation, route }) {
   const { Navigator, Screen } = createStackNavigator();
 
   return (
@@ -15,7 +15,7 @@ export default function FeedStack({ navigation }) {
         component={FeedTopTabs}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation}/>
+            <Header navigation={navigation} route={route}/>
           ),
         }}
       />
