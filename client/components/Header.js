@@ -2,7 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
+import { useAuthContext } from '../utils/useAuthContext';
+
 export default function Header({ navigation, title }) {
+  const { user } = useAuthContext();
   const handlePress = () => {
     navigation.openDrawer();
   };
@@ -17,7 +20,7 @@ export default function Header({ navigation, title }) {
       />
       <View style={styles.headerTitle}>
         <Image style={styles.headerLogo} source={require("../assets/nodes.png")}/>
-        <Text style={styles.headerText}>{title}</Text>
+        <Text style={styles.headerText}>{user.username}</Text>
       </View>
     </View>
   );
