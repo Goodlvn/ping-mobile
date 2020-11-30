@@ -148,3 +148,29 @@ export const CREATE_PING = gql`
     }
   }
 `;
+export const CREATE_COMMENT = gql`
+  mutation createComment($pingId: ID!, $body: String!) {
+    createComment(pingId: $pingId, body: $body) {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      comments {
+        id
+        createdAt
+        body
+        author {
+          id
+          username
+          imageUrl
+        }
+      }
+      supportCount
+    }
+  }
+`;
