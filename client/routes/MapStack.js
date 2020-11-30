@@ -14,7 +14,7 @@ export default function MapStack({navigation}) {
         component={Map}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation} title="Ping Pins" />
+            <Header navigation={navigation} title="Ping Pins"/>
           ),
         }}
       />

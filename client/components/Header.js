@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { useAuthContext } from '../utils/useAuthContext';
-import { useDashboardContext } from '../utils/useDashboardContext';
+import { useAuthContext } from "../utils/useAuthContext";
+import { useDashboardContext } from "../utils/useDashboardContext";
 
 export default function Header({ navigation }) {
   const { user } = useAuthContext();
@@ -21,8 +21,13 @@ export default function Header({ navigation }) {
         onPress={handlePress}
       />
       <View style={styles.headerTitle}>
-        <Image style={styles.headerLogo} source={require("../assets/nodes.png")}/>
-        <Text style={styles.headerText}>{state.selectedUser?.username || user.username}</Text>
+        <Image
+          style={styles.headerLogo}
+          source={require("../assets/nodes.png")}
+        />
+        <Text style={styles.headerText}>
+          {state.selectedUser?.username || user.username}
+        </Text>
       </View>
     </View>
   );
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
     left: 16,
   },
   headerTitle: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   headerLogo: {
     height: 25,
