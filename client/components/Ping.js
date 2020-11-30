@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 import moment from "moment";
 
-export default function Ping({ item, children, background }) {
+export default function Ping({ item, user, children, background }) {
+
     return (
         <View style={[styles.item, background]}>
             <TouchableOpacity underlayColor="white">
