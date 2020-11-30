@@ -23,7 +23,6 @@ export default function Login() {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     update(_, result) {
-      console.log(authContext.login);
       authContext.login(result.data.login);
       dispatch({ type: Actions.SELECT_USER, payload: result.data.login})
     }

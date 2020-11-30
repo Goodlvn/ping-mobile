@@ -184,6 +184,12 @@ export const CREATE_COMMENT = gql`
   }
 `;
 
+export const DELETE_USER = gql`
+  mutation deleteUser($password: String!) {
+    deleteUser(password: $password)
+  }
+`;
+
 export const NEW_PING_SUBSCRIPTION = gql`
   subscription {
     newPing {

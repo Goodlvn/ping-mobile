@@ -9,7 +9,6 @@ import {
 import { TouchableRipple } from "react-native-paper";
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
 import { Entypo } from "@expo/vector-icons";
 
@@ -71,7 +70,7 @@ export default function Feed({ navigation, route }) {
   const supportedPings = data?.getPings.filter((ping) => {
     const isUserPresent = ping.support.filter((supporter) => {
       return (
-        supporter.user.id === displayedUserId && supporter.supported === true
+        supporter.user?.id === displayedUserId && supporter.supported === true
       );
     });
     return isUserPresent.length > 0;
@@ -79,7 +78,7 @@ export default function Feed({ navigation, route }) {
 
   const newPings = data?.getPings.filter((ping) => {
     const isUserPresent = ping.support.filter((supporter) => {
-      return supporter.user.id === displayedUserId;
+      return supporter.user?.id === displayedUserId;
     });
     return isUserPresent.length === 0;
   });
