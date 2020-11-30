@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Button, View } from "react-native";
+import { Text, Button, View, ScrollView } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
 import { useMutation } from "@apollo/client";
 
@@ -31,23 +31,27 @@ export default function Login() {
 
   return (
     <View style={globalStyles.container}>
-      <TextInput
-        label="Username"
-        mode="outlined"
-        value={values.username}
-        error={errors.username ? true : false}
-        onChangeText={(val) => handleChange("username", val)}
-      />
-      <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
-      <TextInput
-        label="Password"
-        mode="outlined"
-        value={values.password}
-        error={errors.password ? true : false}
-        onChangeText={(val) => handleChange("password", val)}
-      />
-      <HelperText type="error" visible={errors.password ? true : false}>{errors.password}</HelperText>
-      <Button title="Login" onPress={handleSubmit} />
+      <ScrollView>
+        <TextInput
+          label="Username"
+          mode="outlined"
+          autoCapitalize="none"
+          value={values.username}
+          error={errors.username ? true : false}
+          onChangeText={(val) => handleChange("username", val)}
+        />
+        <HelperText type="error" visible={errors.username ? true : false}>{errors.username}</HelperText>
+        <TextInput
+          label="Password"
+          mode="outlined"
+          autoCapitalize="none"
+          value={values.password}
+          error={errors.password ? true : false}
+          onChangeText={(val) => handleChange("password", val)}
+        />
+        <HelperText type="error" visible={errors.password ? true : false}>{errors.password}</HelperText>
+        <Button title="Login" onPress={handleSubmit} />
+      </ScrollView>
     </View>
   );
 }
