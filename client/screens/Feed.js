@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
         bottom: 16,
     },
     newPing: {
-        right: 10,
+        right: 0,
+        // NOTE: on the ios simulator it looks good with right at 0
     },
 });
