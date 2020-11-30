@@ -114,20 +114,20 @@ export default function Feed({ navigation, route }) {
                     keyExtractor={(item) => item.id}
                 />
             ) : (
-                    <Text>TEST THE LIST</Text>
+                    <Text style={styles.container}>LOADING...</Text>
                 )}
-          <TouchableRipple
-            onPress={() => navigation.navigate("New Ping")}
-            style={styles.pingBtn}
-            rippleColor="rgba(0, 0, 0, .32)"
-          >
-            <Entypo
-              style={styles.newPing}
-              name="typing"
-              size={24}
-              color="white"
-            />
-          </TouchableRipple>
+            <TouchableRipple
+                onPress={() => navigation.navigate("New Ping")}
+                style={styles.pingBtn}
+                rippleColor="rgba(0, 0, 0, .32)"
+            >
+                <Entypo
+                    style={styles.newPing}
+                    name="typing"
+                    size={24}
+                    color="white"
+                />
+            </TouchableRipple>
         </View>
     );
 }
@@ -158,16 +158,16 @@ const styles = StyleSheet.create({
         marginTop: 0,
     },
     pingBtn: {
-      padding: 12,
-      borderRadius: 50,
-      width: 50,
-      backgroundColor: "#1B90E3",
-      alignItems: "center",
-      position: "absolute",
-      right: 16,
-      bottom: 16,
+        padding: 12,
+        borderRadius: 50,
+        width: 50,
+        backgroundColor: "#1B90E3",
+        alignItems: "center",
+        position: "absolute",
+        right: 16,
+        bottom: 16,
     },
     newPing: {
-      right: 10,
+        right: 10,
     },
 });
