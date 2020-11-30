@@ -50,6 +50,16 @@ export const FETCH_PING_QUERY = gql`
             id
         }
     }
+    comments {
+      id
+      createdAt
+      body
+      author {
+        id
+        username
+        imageUrl
+      }
+    }
     supportCount
     commentCount
     }
