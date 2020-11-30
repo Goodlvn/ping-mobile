@@ -6,12 +6,14 @@ import moment from "moment";
 import Actions from '../utils/dashboardActions';
 import { useDashboardContext } from '../utils/useDashboardContext';
 
-export default function Ping({ item, user, children, background }) {
-  const [_, dispatch] = useDashboardContext();
+export default function Ping({ item, children, background }) {
+    const [_, dispatch] = useDashboardContext();
 
-  const displayProfile = (user) => {
-    dispatch({type: Actions.SELECT_USER, payload: user})
-  }
+    console.log(item);
+
+    const displayProfile = (user) => {
+        dispatch({ type: Actions.SELECT_USER, payload: user })
+    }
 
     return (
         <View style={[styles.item, background]}>
