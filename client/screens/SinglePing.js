@@ -1,19 +1,38 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, TextInput } from "react-native";
 import { Input, Button } from "react-native-elements";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
 import { FETCH_PING_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
 
+import { CREATE_COMMENT } from "../utils/graphql";
+import { useForm } from "../utils/useForm";
+
 export default function SinglePing({ route, route: { params } }) {
+  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
+  const initialState = { pingId: "", body: "" };
   const { user } = useAuthContext();
   const { data } = useQuery(FETCH_PING_QUERY, {
     skip: !params,
     variables: { pingId: params },
   });
+
+  const [createComment] = useMutation(CREATE_COMMENT, {
+    variables: {
+      pingId: pingId,
+      body: comment,
+    },
+    update() {
+      setComment("");
+    },
+  });
+
+  function createCommentCb() {
+    createComent();
+  }
 
   const renderComments = ({ item }) => {
     return <Ping item={item} background={{ backgroundColor: "#fff" }} />;
