@@ -8,7 +8,8 @@ const DashboardContext = React.createContext({
 
 const initialState = {
     userPosition: null,
-    viewport: null
+    viewport: null,
+    selectedUser: null,
 };
 
 function reducer(state, { type, payload }) {
@@ -22,6 +23,11 @@ function reducer(state, { type, payload }) {
             return {
                 ...state,
                 userPosition: payload
+            }
+        case Actions.SELECT_USER:
+            return {
+                ...state,
+                selectedUser: payload,
             }
         default:
             return state;

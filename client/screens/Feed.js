@@ -15,8 +15,8 @@ import * as Location from "expo-location";
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
-import { useDashboardContext } from "../utils/useDashboardContext";
-import Actions from "../utils/dashboardActions";
+import { useDashboardContext } from '../utils/useDashboardContext';
+import Actions from '../utils/dashboardActions';
 
 export default function Feed({ navigation, route }) {
     const [state, dispatch] = useDashboardContext();
@@ -47,22 +47,24 @@ export default function Feed({ navigation, route }) {
     }
 
 
+    const displayedUserId = state.selectedUser?.id || user.id
+
     const supportedPings = data?.getPings.filter((ping) => {
         const isUserPresent = ping.support.filter((supporter) => {
-            return supporter.user.id === user.id && supporter.supported === true;
+            return supporter.user.id === displayedUserId && supporter.supported === true;
         });
         return isUserPresent.length > 0;
     });
 
     const newPings = data?.getPings.filter((ping) => {
         const isUserPresent = ping.support.filter((supporter) => {
-            return supporter.user.id === user.id;
+            return supporter.user.id === displayedUserId;
         });
         return isUserPresent.length === 0;
     });
 
     const authoredPings = data?.getPings.filter((ping) => {
-        return ping.author.id === user.id;
+        return ping.author.id === displayedUserId;
     });
 
     // useFocusEffect(React.useCallback(() => {
@@ -93,7 +95,7 @@ export default function Feed({ navigation, route }) {
         );
     };
 
-    console.log("Houston, the eagle has landed 🚀");
+
     return (
         <View style={styles.container}>
             {data ? (

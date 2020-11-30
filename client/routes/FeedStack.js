@@ -15,7 +15,7 @@ export default function FeedStack({ navigation }) {
         component={FeedTopTabs}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation} title="Ping Feed" />
+            <Header navigation={navigation}/>
           ),
         }}
       />

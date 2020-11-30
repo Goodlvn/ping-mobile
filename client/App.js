@@ -5,7 +5,7 @@ import { client } from "./ApolloProvider";
 
 import AppNavigator from "./routes/AppNavigator";
 import { AuthProvider } from "./utils/useAuthContext";
-import { DashboardProvider } from "./utils/useDashboardContext";
+import { DashboardProvider } from './utils/useDashboardContext';
 
 export default function App() {
   return (
