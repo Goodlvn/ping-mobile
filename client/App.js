@@ -3,15 +3,17 @@ import { StyleSheet, View, Text } from "react-native";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./ApolloProvider";
 
-import Feed from "./screens/FeedDummy";
 import AppNavigator from "./routes/AppNavigator";
 import { AuthProvider } from "./utils/useAuthContext";
+import { DashboardProvider } from "./utils/useDashboardContext";
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
       <AuthProvider>
-        <AppNavigator />
+        <DashboardProvider>
+          <AppNavigator />
+        </DashboardProvider>
       </AuthProvider>
     </ApolloProvider>
   );
