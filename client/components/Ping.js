@@ -3,21 +3,29 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 import moment from "moment";
 
+import Actions from '../utils/dashboardActions';
+import { useDashboardContext } from '../utils/useDashboardContext';
+
 export default function Ping({ item, user, children, background }) {
+  const [_, dispatch] = useDashboardContext();
+
+  const displayProfile = (user) => {
+    dispatch({type: Actions.SELECT_USER, payload: user})
+  }
 
     return (
         <View style={[styles.item, background]}>
             <TouchableOpacity underlayColor="white">
                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
                     {item.author.imageUrl ? <Avatar
-                        onPress={() => console.log("I am an avatart")}
+                        onPress={() => displayProfile(item.author)}
                         size="medium"
                         rounded
                         source={{
                             uri: item.author.imageUrl,
                         }}
                     /> : <Avatar
-                            onPress={() => console.log("I am an avatart")}
+                            onPress={() => displayProfile(item.author)}
                             size="medium"
                             rounded
                             source={{
@@ -31,7 +39,7 @@ export default function Ping({ item, user, children, background }) {
                             marginLeft: 15,
                         }}
                     >
-                        <Text style={styles.username}>@{item.author.username}</Text>
+                        <Text style={styles.username} onPress={() => displayProfile(item.author)}>@{item.author.username}</Text>
                         <Text style={styles.time}> • {moment(Number(item.createdAt)).fromNow()}</Text>
                     </View>
                 </View>

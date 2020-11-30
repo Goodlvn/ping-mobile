@@ -7,7 +7,8 @@ const DashboardContext = React.createContext({
         latitude: 37.7577,
         longitude: -122.4376,
         zoom: 13
-    }
+    },
+    selectedUser: null,
 });
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
         latitude: 37.7577,
         longitude: -122.4376,
         zoom: 13
-    }
+    },
+    selectedUser: null,
 };
 
 function reducer(state, { type, payload }) {
@@ -30,6 +32,11 @@ function reducer(state, { type, payload }) {
             return {
                 ...state,
                 userPosition: payload
+            }
+        case Actions.SELECT_USER: 
+            return {
+                ...state,
+                selectedUser: payload,
             }
         default:
             return state;
