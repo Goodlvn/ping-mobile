@@ -33,7 +33,7 @@ export const useForm = (callback, initialState = {}) => {
 
   async function handleSubmit() {
     let img = null;
-    if(values.imageUrl) {
+    if (values.imageUrl) {
       img = await handleImageUpload();
     }
     callback(img);
