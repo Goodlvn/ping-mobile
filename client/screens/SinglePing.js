@@ -18,8 +18,8 @@ export default function SinglePing({ route, route: { params } }) {
     variables: { pingId: params },
   });
 
-  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
   const initialState = { body: "" };
+  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
       pingId: params,

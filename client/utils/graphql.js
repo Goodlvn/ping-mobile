@@ -179,6 +179,7 @@ export const CREATE_COMMENT = gql`
         }
       }
       supportCount
+      commentCount
     }
   }
 `;

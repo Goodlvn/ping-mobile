@@ -108,7 +108,7 @@ export default function Feed({ navigation, route }) {
       </TouchableOpacity>
     );
   };
-
+  
   return (
     <View style={styles.container}>
       {data ? (

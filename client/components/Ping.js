@@ -2,15 +2,18 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 import moment from "moment";
+import { useNavigation } from '@react-navigation/native';
 
 import Actions from "../utils/dashboardActions";
 import { useDashboardContext } from "../utils/useDashboardContext";
 
 export default function Ping({ item, children, background }) {
   const [_, dispatch] = useDashboardContext();
+  const navigation = useNavigation();
 
   const displayProfile = (user) => {
     dispatch({ type: Actions.SELECT_USER, payload: user });
+    navigation.navigate("Supported")
   };
 
   return (
