@@ -1,11 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
-import { useQuery } from "@apollo/client";
+import { StyleSheet, View, Text, FlatList, ScrollView, TextInput } from "react-native";
+import { Input, Button } from "react-native-elements";
+import { useQuery, useMutation } from "@apollo/client";
 
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
 import { FETCH_PING_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
+
+import { CREATE_COMMENT } from "../utils/graphql";
+import { useForm } from "../utils/useForm";
 
 export default function SinglePing({ route, route: { params } }) {
   const { user } = useAuthContext();
@@ -13,6 +17,22 @@ export default function SinglePing({ route, route: { params } }) {
     skip: !params,
     variables: { pingId: params },
   });
+
+  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
+  const initialState = { body: "" };
+  const [createComment] = useMutation(CREATE_COMMENT, {
+    variables: {
+      pingId: params,
+      body: values.body,
+    },
+    update() {
+      setValues(initialState)
+    },
+  });
+
+  function createCommentCb() {
+    createComment();
+  }
 
   const renderComments = ({ item }) => {
     return <Ping item={item} background={{ backgroundColor: "#fff" }} />;
@@ -22,11 +42,26 @@ export default function SinglePing({ route, route: { params } }) {
     <View style={styles.container}>
       {data ? (
         <>
-          <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
-            <PingIcons item={data.getPing} user={user} route={route} />
-          </Ping>
+          <View>
+            <ScrollView styles={{ margin: 0, padding: 0 }}>
+              <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
+                <PingIcons item={data.getPing} user={user} route={route} />
+              </Ping>
+            </ScrollView>
+          </View>
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
+          </View>
+          <View >
+            <TextInput
+              style={{ height: 50, borderColor: "#E0FFEE", borderWidth: 1 }}
+              placeholder="Got something to say?"
+              placeholderTextColor="#707070"
+              textAlign="center"
+              value={values.body}
+              onChangeText={(val) => handleChange("body", val)}
+            />
+            <Button title="Send" raised onPress={handleSubmit} />
           </View>
           <FlatList
             data={data.getPing.comments}
@@ -44,13 +79,14 @@ export default function SinglePing({ route, route: { params } }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FFEE",
     marginTop: 0,
   },
   commentsHeader: {
-    textAlign: "center",
+    alignItems: 'center',
     borderBottomColor: "#eee",
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: -8
+
   },
   commentsText: {
     marginVertical: 10,

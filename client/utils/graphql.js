@@ -50,6 +50,16 @@ export const FETCH_PING_QUERY = gql`
             id
         }
     }
+    comments {
+      id
+      createdAt
+      body
+      author {
+        id
+        username
+        imageUrl
+      }
+    }
     supportCount
     commentCount
     }
@@ -112,6 +122,55 @@ export const SUPPORT_PING = gql`
       }
       supportCount
       commentCount
+    }
+  }
+`;
+export const CREATE_PING = gql`
+  mutation createPing($body: String!, $imageUrl: String, $lat: Float!, $long: Float!) {
+    createPing(body: $body, imageUrl: $imageUrl, lat: $lat, long: $long) {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      support {
+        supported
+        user {
+          id
+        }
+      }
+      supportCount
+      commentCount
+    }
+  }
+`;
+export const CREATE_COMMENT = gql`
+  mutation createComment($pingId: ID!, $body: String!) {
+    createComment(pingId: $pingId, body: $body) {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      comments {
+        id
+        createdAt
+        body
+        author {
+          id
+          username
+          imageUrl
+        }
+      }
+      supportCount
     }
   }
 `;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Button, View, ScrollView } from "react-native";
+import { Button, View, ScrollView } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
 import { useMutation } from "@apollo/client";
 
