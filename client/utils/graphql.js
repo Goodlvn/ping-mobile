@@ -177,3 +177,27 @@ export const CREATE_COMMENT = gql`
     }
   }
 `;
+
+export const NEW_PING_SUBSCRIPTION = gql`
+  subscription {
+    newPing {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        imageUrl
+        username
+      }
+      support {
+        supported
+        user {
+          id
+        }
+      }
+      supportCount
+      commentCount
+    }
+  }
+`;
