@@ -119,7 +119,9 @@ export default function Feed({ navigation, route }) {
               ? supportedPings
               : route.name === "Posted"
               ? authoredPings
-              : newPings
+              : route.name === "New"
+              ? newPings
+              : data.getPings
           }
           renderItem={renderItem}
           keyExtractor={(item) => item.id}

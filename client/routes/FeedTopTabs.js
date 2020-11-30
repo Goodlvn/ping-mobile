@@ -11,6 +11,7 @@ export default function FeedTopTabs() {
       <Screen name="Supported" component={Feed} />
       <Screen name="Posted" component={Feed} />
       <Screen name="New" component={Feed} />
+      <Screen name="All" component={Feed} />
     </Navigator>
   );
 }
