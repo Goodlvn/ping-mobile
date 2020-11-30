@@ -6,7 +6,7 @@ import UserSettings from "../screens/UserSettings";
 import DeleteUser from "../screens/DeleteUser";
 import Header from "../components/Header";
 
-export default function UserSettingsStack({ navigation }) {
+export default function UserSettingsStack({ navigation, route }) {
   const { Navigator, Screen } = createStackNavigator();
 
   return (
@@ -16,7 +16,7 @@ export default function UserSettingsStack({ navigation }) {
         component={SettingsOptions}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation} title="Settings" />
+            <Header navigation={navigation} title="Settings" route={route} />
           ),
         }}
       />
