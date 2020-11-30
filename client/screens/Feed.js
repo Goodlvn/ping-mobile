@@ -64,7 +64,6 @@ export default function Feed({ navigation, route }) {
     );
   };
 
-  console.log("Houston, the eagle has landed 🚀");
   return (
     <View style={styles.container}>
       {data ? (
