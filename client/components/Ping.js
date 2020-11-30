@@ -9,8 +9,6 @@ import { useDashboardContext } from '../utils/useDashboardContext';
 export default function Ping({ item, children, background }) {
     const [_, dispatch] = useDashboardContext();
 
-    console.log(item);
-
     const displayProfile = (user) => {
         dispatch({ type: Actions.SELECT_USER, payload: user })
     }
