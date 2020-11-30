@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, ScrollView } from "react-native";
 import { useQuery } from "@apollo/client";
 
 import Ping from "../components/Ping";
@@ -22,9 +22,11 @@ export default function SinglePing({ route, route: { params } }) {
     <View style={styles.container}>
       {data ? (
         <>
-          <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
-            <PingIcons item={data.getPing} user={user} route={route} />
-          </Ping>
+          <ScrollView>
+            <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
+              <PingIcons item={data.getPing} user={user} route={route} />
+            </Ping>
+          </ScrollView>
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
           </View>
