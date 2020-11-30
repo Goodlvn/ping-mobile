@@ -11,6 +11,7 @@ import PingIcons from "../components/PingIcons";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
 
+
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
@@ -24,7 +25,7 @@ export default function Feed({ navigation, route }) {
 
     useEffect(() => {
         load();
-    }, [])
+    }, [user]);
 
     async function load() {
         try {
@@ -39,8 +40,7 @@ export default function Feed({ navigation, route }) {
 
             const { latitude, longitude } = await location.coords
 
-            console.log(latitude, longitude);
-
+            dispatch({ type: Actions.UPDATE_USER_POSITION, payload: { latitude, longitude } })
         } catch (err) {
 
         }
@@ -95,7 +95,7 @@ export default function Feed({ navigation, route }) {
         );
     };
 
-    
+
     return (
         <View style={styles.container}>
             {data ? (
