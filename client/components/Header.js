@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { TouchableRipple } from 'react-native-paper';
 import { MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from '@expo/vector-icons';
 
 import { useAuthContext } from '../utils/useAuthContext';
 import { useDashboardContext } from '../utils/useDashboardContext';
@@ -24,6 +26,9 @@ export default function Header({ navigation }) {
         <Image style={styles.headerLogo} source={require("../assets/nodes.png")}/>
         <Text style={styles.headerText}>{state.selectedUser?.username || user.username}</Text>
       </View>
+      <TouchableRipple onPress={() => console.log('hello')} style={styles.pingBtn} rippleColor="rgba(0, 0, 0, .32)">
+        <Entypo style={styles.newPing} name="typing" size={24} color="white" />
+      </TouchableRipple>
     </View>
   );
 }
@@ -52,4 +57,16 @@ const styles = StyleSheet.create({
     color: "#333",
     letterSpacing: 1,
   },
+  pingBtn: {
+    padding: 7,
+    borderRadius: 50,
+    width: 40,
+    backgroundColor: "#1B90E3",
+    alignItems: "center",
+    position: "absolute",
+    right: 16
+  },
+  newPing: {
+    right: 10
+  }
 });

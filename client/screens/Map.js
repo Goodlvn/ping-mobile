@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 import { useDashboardContext } from "../utils/useDashboardContext";
 
 export default function Map({ navigation }) {
