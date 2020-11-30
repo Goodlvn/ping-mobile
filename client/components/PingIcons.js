@@ -86,28 +86,30 @@ export default function PingIcons({ item, user, navigation, route }) {
         </View>
       </TouchableOpacity>
       {/* Content Type */}
-      <View style={{ flexDirection: "row" }}>
-        {item.imageUrl ? (
-          <Entypo
-            style={styles.icon}
-            name="image-inverted"
-            size={15}
-            color="#717378"
-            onPress={() => console.log("test as button")}
-          />
-        ) : (
-          <Ionicons
-            style={styles.icon}
-            name="ios-paper"
-            size={15}
-            color="#717378"
-            onPress={() =>
-              route.name !== "Single Ping" &&
-              navigation.navigate("Single Ping", item.id)
-            }
-          />
-        )}
-      </View>
+      <TouchableOpacity
+        onPress={() =>
+          route.name !== "Single Ping" &&
+          navigation.navigate("Single Ping", item.id)
+        }
+      >
+        <View style={{ flexDirection: "row" }}>
+          {item.imageUrl ? (
+            <Entypo
+              style={styles.icon}
+              name="image-inverted"
+              size={15}
+              color="#717378"
+            />
+          ) : (
+            <Ionicons
+              style={styles.icon}
+              name="ios-paper"
+              size={15}
+              color="#717378"
+            />
+          )}
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
