@@ -6,10 +6,12 @@ import {
     Text,
     TouchableOpacity,
 } from "react-native";
+import { TouchableRipple } from 'react-native-paper';
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
+import { Entypo } from "@expo/vector-icons";
 
 
 import { useQuery } from "@apollo/client";
@@ -114,6 +116,18 @@ export default function Feed({ navigation, route }) {
             ) : (
                     <Text>TEST THE LIST</Text>
                 )}
+          <TouchableRipple
+            onPress={() => console.log("Hello")}
+            style={styles.pingBtn}
+            rippleColor="rgba(0, 0, 0, .32)"
+          >
+            <Entypo
+              style={styles.newPing}
+              name="typing"
+              size={24}
+              color="white"
+            />
+          </TouchableRipple>
         </View>
     );
 }
@@ -142,6 +156,19 @@ const styles = StyleSheet.create({
     },
     feed: {
         marginTop: 0,
+    },
+    pingBtn: {
+      padding: 12,
+      borderRadius: 50,
+      width: 50,
+      backgroundColor: "#1B90E3",
+      alignItems: "center",
+      position: "absolute",
+      right: 16,
+      bottom: 16,
+    },
+    newPing: {
+      right: 10,
     },
 });
 

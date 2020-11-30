@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { Button, Overlay } from "react-native-elements";
+import React from "react";
+import { View, Text } from 'react-native';
+import { Overlay } from "react-native-elements";
 
-export default function NewPing({ isVisible }) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function NewPing({ isVisible, setIsVisible }) {
 
   return (
     <View>
-      <Button title="Open Overlay" onPress={toggleOverlay} />
-
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+      <Overlay isVisible={isVisible} onBackdropPress={() => setIsVisible(!isVisible)}>
         <Text>Hello from Overlay!</Text>
       </Overlay>
     </View>

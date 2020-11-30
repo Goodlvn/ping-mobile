@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Map from "../screens/Map";
 import SinglePing from "../screens/SinglePing";
 
-export default function MapStack({navigation, route}) {
+export default function MapStack({navigation}) {
   const { Navigator, Screen } = createStackNavigator();
   return (
     <Navigator>
@@ -14,7 +14,7 @@ export default function MapStack({navigation, route}) {
         component={Map}
         options={{
           headerTitle: () => (
-            <Header navigation={navigation} title="Ping Pins" route={route}/>
+            <Header navigation={navigation} title="Ping Pins"/>
           ),
         }}
       />
