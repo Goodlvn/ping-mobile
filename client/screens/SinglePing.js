@@ -13,7 +13,7 @@ import { useForm } from "../utils/useForm";
 
 export default function SinglePing({ route, route: { params } }) {
   const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
-  const initialState = { pingId: "", body: "" };
+  const initialState = { body: "" };
   const { user } = useAuthContext();
   const { data } = useQuery(FETCH_PING_QUERY, {
     skip: !params,
@@ -22,16 +22,16 @@ export default function SinglePing({ route, route: { params } }) {
 
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
-      pingId: pingId,
-      body: comment,
+      pingId: data.getPing.id,
+      body: values.body,
     },
     update() {
-      setComment("");
+      setValues(initialState)
     },
   });
 
   function createCommentCb() {
-    createComent();
+    createComment();
   }
 
   const renderComments = ({ item }) => {
@@ -58,8 +58,10 @@ export default function SinglePing({ route, route: { params } }) {
               placeholder="Got something to say?"
               placeholderTextColor="#707070"
               textAlign="center"
+              value={values.body}
+              onChangeText={(val) => handleChange("body", val)}
             />
-            <Button title="Send" raised />
+            <Button title="Send" raised onPress={handleSubmit} />
           </View>
           <FlatList
             data={data.getPing.comments}
