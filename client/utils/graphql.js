@@ -31,30 +31,27 @@ getPings {
 export const FETCH_PING_QUERY = gql`
   query getPing($pingId: ID!) {
     getPing(pingId: $pingId) {
-      id
-      body
-      location {
+      id 
+    body 
+    location {
         type
         coordinates
-      }
-      imageUrl
-      createdAt
-      author {
+    }
+    imageUrl
+    createdAt 
+    author {
         id
-        imageUrl
+        imageUrl 
         username
-      }
-      comments {
-        id
-        createdAt
-        body
-        author {
-          id
-          username
-          imageUrl
+    }
+    support {
+        supported
+        user {
+            id
         }
-      }
-      supportCount
+    }
+    supportCount
+    commentCount
     }
   }
 `;
@@ -92,6 +89,29 @@ export const LOGIN_USER = gql`
       token
       username
       createdAt
+    }
+  }
+`;
+export const SUPPORT_PING = gql`
+  mutation supportPing($pingId: ID!, $support: Boolean!) {
+    supportPing(pingId: $pingId, support: $support) {
+      id
+      body
+      imageUrl
+      createdAt
+      author {
+        id
+        username
+      }
+      support {
+        id
+        supported
+        user {
+          username
+        }
+      }
+      supportCount
+      commentCount
     }
   }
 `;
