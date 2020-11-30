@@ -25,16 +25,16 @@ export default function AppNavigator() {
               options={{ headerShown: false }}
             />
           ) : (
-              <>
-                <Screen
-                  name="Landing"
-                  component={Landing}
-                  options={{ headerShown: false, animationTypeForReplace: "pop" }}
-                />
-                <Screen name="Login" component={Login} />
-                <Screen name="Register" component={Register} />
-              </>
-            )}
+            <>
+              <Screen
+                name="Landing"
+                component={Landing}
+                options={{ headerShown: false, animationTypeForReplace: "pop" }}
+              />
+              <Screen name="Login" component={Login} />
+              <Screen name="Register" component={Register} />
+            </>
+          )}
         </Navigator>
       </NavigationContainer>
     </TouchableWithoutFeedback>
