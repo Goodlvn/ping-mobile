@@ -1,104 +1,121 @@
 import React from "react";
 import {
-    View,
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
 } from "react-native";
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
 import { useAuthContext } from "../utils/useAuthContext";
 
 export default function Feed({ navigation, route }) {
-    const { data } = useQuery(FETCH_PINGS_QUERY);
-    const { user } = useAuthContext();
-    if(data) console.log(data)
-    const supportedPings = data?.getPings.filter(ping => {
-      const isUserPresent = ping.support.filter(supporter => {
-        return supporter.user.id === user.id && supporter.supported === true;
-      })
-      return isUserPresent.length > 0;
-    })
+  const { data } = useQuery(FETCH_PINGS_QUERY);
+  const { user } = useAuthContext();
 
-    const newPings = data?.getPings.filter(ping => {
-      const isUserPresent = ping.support.filter(supporter => {
-        return supporter.user.id === user.id;
-      })
-      return isUserPresent.length === 0;
-    })
+  const supportedPings = data?.getPings.filter((ping) => {
+    const isUserPresent = ping.support.filter((supporter) => {
+      return supporter.user.id === user.id && supporter.supported === true;
+    });
+    return isUserPresent.length > 0;
+  });
 
+  const newPings = data?.getPings.filter((ping) => {
+    const isUserPresent = ping.support.filter((supporter) => {
+      return supporter.user.id === user.id;
+    });
+    return isUserPresent.length === 0;
+  });
 
+  const authoredPings = data?.getPings.filter((ping) => {
+    return ping.author.id === user.id;
+  });
 
-    // useFocusEffect(React.useCallback(() => {
-    //   console.log(route.name);
-    //   return () => {
-    //     console.log(`leaving ${route.name}`)
-    //   }
-    // }, [route.name]))
+  // useFocusEffect(React.useCallback(() => {
+  //   console.log(route.name);
+  //   return () => {
+  //     console.log(`leaving ${route.name}`)
+  //   }
+  // }, [route.name]))
 
-    const renderItem = ({ item }) => {
-        return (
-            <TouchableOpacity
-                onPress={() => navigation.navigate("Single Ping", item.id)}
-            >
-                <Ping item={item} user={user} background={{ backgroundColor: "#D5E2F0" }}>
-                    <PingIcons item={item} user={user} navigation={navigation} route={route} />
-                </Ping>
-            </TouchableOpacity>
-        );
-    };
-
-    console.log("Houston, the eagle has landed 🚀");
+  const renderItem = ({ item }) => {
     return (
-        <View style={styles.container}>
-            {data ? (
-                <FlatList
-                    style={styles.feed}
-                    data={data.getPings}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                />
-            ) : (
-                    <Text>TEST THE LIST</Text>
-                )}
-        </View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Single Ping", item.id)}
+      >
+        <Ping
+          item={item}
+          user={user}
+          background={{ backgroundColor: "#D5E2F0" }}
+        >
+          <PingIcons
+            item={item}
+            user={user}
+            navigation={navigation}
+            route={route}
+          />
+        </Ping>
+      </TouchableOpacity>
     );
+  };
+
+  console.log("Houston, the eagle has landed 🚀");
+  return (
+    <View style={styles.container}>
+      {data ? (
+        <FlatList
+          style={styles.feed}
+          data={
+            route.name === "Supported"
+              ? supportedPings
+              : route.name === "Posted"
+              ? authoredPings
+              : newPings
+          }
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <Text>TEST THE LIST</Text>
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        marginTop: 0,
-    },
-    logo: {
-        width: 50,
-        height: 50,
-    },
-    item: {
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        flexDirection: "row",
-    },
-    username: {
-        fontSize: 23,
-    },
-    body: {
-        marginTop: 15,
-    },
-    feed: {
-        marginTop: 0,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    marginTop: 0,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+  },
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    flexDirection: "row",
+  },
+  username: {
+    fontSize: 23,
+  },
+  body: {
+    marginTop: 15,
+  },
+  feed: {
+    marginTop: 0,
+  },
 });
 
 {
-    /* <FlatList
+  /* <FlatList
       data={this.props.tweets}
       keyExtractor={this._keyExtractor}
       renderItem={({ item }) => (
