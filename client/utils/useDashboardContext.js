@@ -3,20 +3,12 @@ import Actions from './dashboardActions';
 
 const DashboardContext = React.createContext({
     userPosition: null,
-    viewport: {
-        latitude: 37.7577,
-        longitude: -122.4376,
-        zoom: 13
-    }
+    viewport: null
 });
 
 const initialState = {
     userPosition: null,
-    viewport: {
-        latitude: 37.7577,
-        longitude: -122.4376,
-        zoom: 13
-    }
+    viewport: null
 };
 
 function reducer(state, { type, payload }) {
