@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FeedStack from './FeedStack';
 import MapStack from './MapStack';
 
-export default function PingsStack() {
+export default function PingsBottomTabs() {
   const { Navigator, Screen } = createBottomTabNavigator();
 
   return (
