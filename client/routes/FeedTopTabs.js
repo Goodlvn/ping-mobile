@@ -2,7 +2,6 @@ import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import Feed from "../screens/Feed";
-import Header from "../components/Header";
 
 export default function FeedTopTabs() {
   const { Navigator, Screen } = createMaterialTopTabNavigator();

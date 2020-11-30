@@ -12,8 +12,9 @@ import PingIcons from "../components/PingIcons";
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
 
-export default function Feed({ navigation }) {
+export default function Feed({ navigation, route }) {
   const { data } = useQuery(FETCH_PINGS_QUERY);
+  console.log(route);
 
   const renderItem = ({ item }) => {
     return (
