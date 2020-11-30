@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
+import { useFocusEffect } from '@react-navigation/native';
 
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
@@ -16,6 +17,12 @@ import { useAuthContext } from "../utils/useAuthContext";
 export default function Feed({ navigation, route }) {
     const { data } = useQuery(FETCH_PINGS_QUERY);
     const { user } = useAuthContext();
+    useFocusEffect(React.useCallback(() => {
+      console.log(route.name);
+      return () => {
+        console.log(`leaving ${route.name}`)
+      }
+    }, [route.name]))
 
     const renderItem = ({ item }) => {
         return (
