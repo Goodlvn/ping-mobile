@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import SupportIcon from "./SupportIcon";
 
 import { useMutation } from "@apollo/client";
 import { SUPPORT_PING } from "../utils/graphql";
@@ -31,11 +32,9 @@ export default function PingIcons({ item, user, navigation, route }) {
         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
             {/* Support icon and count */}
             <View style={{ flexDirection: "row" }} >
-                <Ionicons
+                <SupportIcon
                     style={styles.icon}
-                    name="ios-heart"
                     size={15}
-                    color="#F0271D"
                     onPress={() => handleSupport(true)}
                 />
                 {item.supportCount === 0 ? <Text></Text> : <Text style={styles.count}>{item.supportCount}</Text>}
@@ -124,7 +123,8 @@ const styles = StyleSheet.create({
         marginRight: 2
     },
     count: {
-        color: "#717378"
+        color: "#717378",
+        marginLeft: 3,
     }
 
 });
