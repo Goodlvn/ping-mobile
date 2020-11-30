@@ -48,7 +48,6 @@ export default function Feed({ navigation, route }) {
         }
     }
 
-
     const displayedUserId = state.selectedUser?.id || user.id
 
     const supportedPings = data?.getPings.filter((ping) => {
