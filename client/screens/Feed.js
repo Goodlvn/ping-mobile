@@ -11,22 +11,24 @@ import PingIcons from "../components/PingIcons";
 
 import { useQuery } from "@apollo/client";
 import { FETCH_PINGS_QUERY } from "../utils/graphql";
+import { useAuthContext } from "../utils/useAuthContext";
 
-export default function Feed({ navigation }) {
+export default function Feed({ navigation, route }) {
     const { data } = useQuery(FETCH_PINGS_QUERY);
+    const { user } = useAuthContext();
 
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity
                 onPress={() => navigation.navigate("Single Ping", item.id)}
             >
-                <Ping item={item} background={{ backgroundColor: "#D5E2F0" }}>
-                    <PingIcons item={item} />
+                <Ping item={item} user={user} background={{ backgroundColor: "#D5E2F0" }}>
+                    <PingIcons item={item} user={user} navigation={navigation} route={route} />
                 </Ping>
             </TouchableOpacity>
         );
     };
-    data && console.log(data.getPings[0])
+
     console.log("Houston, the eagle has landed 🚀");
     return (
         <View style={styles.container}>
