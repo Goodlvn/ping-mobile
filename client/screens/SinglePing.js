@@ -22,11 +22,13 @@ export default function SinglePing({ route, route: { params } }) {
     <View style={styles.container}>
       {data ? (
         <>
-          <ScrollView>
-            <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
-              <PingIcons item={data.getPing} user={user} route={route} />
-            </Ping>
-          </ScrollView>
+          <View>
+            <ScrollView styles={{ margin: 0, padding: 0 }}>
+              <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
+                <PingIcons item={data.getPing} user={user} route={route} />
+              </Ping>
+            </ScrollView>
+          </View>
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
           </View>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   commentsHeader: {
-    textAlign: "center",
+    alignItems: 'center',
     borderBottomColor: "#eee",
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
