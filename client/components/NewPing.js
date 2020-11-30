@@ -1,14 +1,20 @@
 import React from "react";
-import { View, Text } from 'react-native';
-import { Overlay } from "react-native-elements";
+import { View, StyleSheet } from 'react-native';
+import { Input, Button } from "react-native-elements";
 
-export default function NewPing({ isVisible, setIsVisible }) {
+export default function NewPing() {
 
   return (
-    <View>
-      <Overlay isVisible={isVisible} onBackdropPress={() => setIsVisible(!isVisible)}>
-        <Text>Hello from Overlay!</Text>
-      </Overlay>
+    <View style={styles.text}>
+      <Input placeholder="What's poppin..." />
+      <Button style={styles.postBtn} title="Post" raised />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+})

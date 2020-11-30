@@ -117,7 +117,7 @@ export default function Feed({ navigation, route }) {
                     <Text>TEST THE LIST</Text>
                 )}
           <TouchableRipple
-            onPress={() => console.log("Hello")}
+            onPress={() => navigation.navigate("New Ping")}
             style={styles.pingBtn}
             rippleColor="rgba(0, 0, 0, .32)"
           >
