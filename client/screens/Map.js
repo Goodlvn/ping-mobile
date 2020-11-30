@@ -1,20 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, SafeAreaView } from "react-native";
+// import { StyleSheet, Button, View } from "react-native";
+// import { MapView } from "react-native-maps";
 
 import { globalStyles } from "../styles/global";
 
 export default function Map({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Map</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
 
-  },
-
-});
+// })
