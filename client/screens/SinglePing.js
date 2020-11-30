@@ -5,8 +5,10 @@ import { useQuery } from "@apollo/client";
 import Ping from "../components/Ping";
 import PingIcons from "../components/PingIcons";
 import { FETCH_PING_QUERY } from "../utils/graphql";
+import { useAuthContext } from "../utils/useAuthContext";
 
-export default function SinglePing({ route: { params } }) {
+export default function SinglePing({ route, route: { params } }) {
+  const { user } = useAuthContext();
   const { data } = useQuery(FETCH_PING_QUERY, {
     skip: !params,
     variables: { pingId: params },
@@ -21,7 +23,7 @@ export default function SinglePing({ route: { params } }) {
       {data ? (
         <>
           <Ping item={data.getPing} background={{ backgroundColor: "#D5E2F0" }}>
-            <PingIcons />
+            <PingIcons item={data.getPing} user={user} route={route} />
           </Ping>
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
@@ -33,8 +35,8 @@ export default function SinglePing({ route: { params } }) {
           />
         </>
       ) : (
-        <Text>Loading...</Text>
-      )}
+          <Text>Loading...</Text>
+        )}
     </View>
   );
 }

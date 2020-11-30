@@ -1,10 +1,32 @@
 import React from 'react'
 import { View, StyleSheet, Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
-export default function PingIcons() {
+import { useMutation } from "@apollo/client";
+import { SUPPORT_PING } from "../utils/graphql";
+
+export default function PingIcons({ item, user, navigation, route }) {
+
+    const [supportMutation] = useMutation(SUPPORT_PING, {
+        onError(err) {
+            console.log(err);
+        },
+    });
+
+    function handleSupport(suppBool) {
+        const alreadySupported = item.support.filter(supporter => {
+            return supporter.supported === suppBool && supporter.user.id === user.id
+        })
+        if (alreadySupported.length === 0) {
+            supportMutation({ variables: { pingId: item.id, support: suppBool } });
+        } else {
+            console.log("already interacted with this");
+        }
+    }
+
     return (
         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
             {/* Support icon and count */}
@@ -14,9 +36,22 @@ export default function PingIcons() {
                     name="ios-heart"
                     size={15}
                     color="#F0271D"
+                    onPress={() => handleSupport(true)}
                 />
-                <Text style={styles.count}>3</Text>
+                {item.supportCount === 0 ? <Text></Text> : <Text style={styles.count}>{item.supportCount}</Text>}
             </View>
+
+            {/* Dissmiss Button icon and count */}
+            <View style={{ flexDirection: "row" }} >
+                <AntDesign
+                    style={styles.icon}
+                    name="minuscircle"
+                    size={15}
+                    color="#717378"
+                    onPress={() => handleSupport(false)}
+                />
+            </View>
+
             {/* Comment icon and count */}
             <View style={{ flexDirection: "row" }}  >
                 <FontAwesome5
@@ -24,19 +59,28 @@ export default function PingIcons() {
                     name="comment"
                     size={15}
                     color="#717378"
-                    onPress={() => console.log("test as button")}
+                    onPress={() => route.name !== "Single Ping" && navigation.navigate("Single Ping", item.id)}
                 />
-                <Text style={styles.count}>3</Text>
+                {item.commentCount === 0 ? <Text></Text> : <Text style={styles.count}>{item.commentCount}</Text>}
             </View>
             {/* Content Type */}
             <View style={{ flexDirection: "row" }} >
-                <Entypo
+                {item.imageUrl ? <Entypo
                     style={styles.icon}
-                    name="image"
+                    name="image-inverted"
                     size={15}
                     color="#717378"
                     onPress={() => console.log("test as button")}
                 />
+                    : <Ionicons
+                        style={styles.icon}
+                        name="ios-paper"
+                        size={15}
+                        color="#717378"
+                        onPress={() => route.name !== "Single Ping" && navigation.navigate("Single Ping", item.id)}
+                    />}
+
+
             </View>
         </View>
     )
