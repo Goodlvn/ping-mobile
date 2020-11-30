@@ -12,17 +12,17 @@ import { CREATE_COMMENT } from "../utils/graphql";
 import { useForm } from "../utils/useForm";
 
 export default function SinglePing({ route, route: { params } }) {
-  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
-  const initialState = { body: "" };
   const { user } = useAuthContext();
   const { data } = useQuery(FETCH_PING_QUERY, {
     skip: !params,
     variables: { pingId: params },
   });
 
+  const { handleChange, handleSubmit, values, setValues } = useForm(createCommentCb, initialState);
+  const initialState = { body: "" };
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
-      pingId: data.getPing.id,
+      pingId: params,
       body: values.body,
     },
     update() {
