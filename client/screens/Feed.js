@@ -25,7 +25,14 @@ export default function Feed({ navigation, route }) {
       return isUserPresent.length > 0;
     })
 
-    
+    const newPings = data?.getPings.filter(ping => {
+      const isUserPresent = ping.support.filter(supporter => {
+        return supporter.user.id === user.id;
+      })
+      return isUserPresent.length === 0;
+    })
+
+
 
     // useFocusEffect(React.useCallback(() => {
     //   console.log(route.name);
