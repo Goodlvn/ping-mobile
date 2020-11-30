@@ -6,29 +6,37 @@ import { useDashboardContext } from "../utils/useDashboardContext";
 export default function Map({ navigation }) {
   const [{ userPosition }] = useDashboardContext();
 
-  // if (userPosition.latitude) {
-  //   return (
+  if (userPosition.latitude) {
+    return (
 
-  //     <MapView
-  //       showsUserLocation
-  //       style={{ flex: 1 }}
-  //       initialRegion={{
-  //         latitude: userPosition.latitude,
-  //         longitude: userPosition.longitude,
-  //         latitudeDelta: 0.0922,
-  //         longitudeDelta: 0.0421
-  //       }}
-  //     >
+      <MapView
+        showsUserLocation
+        style={{ flex: 1 }}
+        initialRegion={{
+          latitude: userPosition.latitude,
+          longitude: userPosition.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+      >
+        <MapView.Marker
+          coordinate={{
+            latitude: 37.73538,
+            longitude: -122.4324,
+          }}
+          title={"marker.title"}
+          description={"desss"}
+        />
 
-  //     </MapView>
-  //   );
-  // } else {
-  return (
-    <View style={styles.container}>
-      <Text>LOADING...</Text>
-    </View>
-  );
-  // }
+      </MapView>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text>LOADING...</Text>
+      </View>
+    );
+  }
 
 }
 
