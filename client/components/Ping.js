@@ -3,7 +3,15 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 import moment from "moment";
 
+import Actions from '../utils/dashboardActions';
+import { useDashboardContext } from '../utils/useDashboardContext';
+
 export default function Ping({ item, user, children, background }) {
+  const [_, dispatch] = useDashboardContext();
+  
+  const displayProfile = (user) => {
+    dispatch({type: Actions.SELECT_USER, payload: user})
+  }
 
     return (
         <View style={[styles.item, background]}>
@@ -17,7 +25,7 @@ export default function Ping({ item, user, children, background }) {
                             uri: item.author.imageUrl,
                         }}
                     /> : <Avatar
-                            onPress={() => console.log("I am an avatart")}
+                            onPress={() => displayProfile(item.author)}
                             size="medium"
                             rounded
                             source={{

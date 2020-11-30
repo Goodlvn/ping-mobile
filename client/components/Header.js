@@ -4,7 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { useAuthContext } from '../utils/useAuthContext';
 
-export default function Header({ navigation, title }) {
+export default function Header({ navigation }) {
   const { user } = useAuthContext();
   const handlePress = () => {
     navigation.openDrawer();
