@@ -1,69 +1,69 @@
 import gql from "graphql-tag";
 
 export const FETCH_PINGS_QUERY = gql`
-{
-getPings {
-    id 
-    body 
-    location {
+  {
+    getPings {
+      id
+      body
+      location {
         type
         coordinates
-    }
-    imageUrl
-    createdAt 
-    author {
+      }
+      imageUrl
+      createdAt
+      author {
         id
-        imageUrl 
+        imageUrl
         username
-    }
-    support {
+      }
+      support {
         supported
         user {
-            id
+          id
         }
+      }
+      supportCount
+      dismissCount
+      commentCount
     }
-    supportCount
-    dismissCount
-    commentCount
-}
-}
+  }
 `;
 
 export const FETCH_PING_QUERY = gql`
   query getPing($pingId: ID!) {
     getPing(pingId: $pingId) {
-      id 
-    body 
-    location {
+      id
+      body
+      location {
         type
         coordinates
-    }
-    imageUrl
-    createdAt 
-    author {
-        id
-        imageUrl 
-        username
-    }
-    support {
-        supported
-        user {
-            id
-        }
-    }
-    comments {
-      id
+      }
+      imageUrl
       createdAt
-      body
       author {
         id
-        username
         imageUrl
+        username
       }
-    }
-    supportCount
-    dismissCount
-    commentCount
+      support {
+        supported
+        user {
+          id
+        }
+      }
+      comments {
+        id
+        createdAt
+        body
+        author {
+          id
+          username
+          imageUrl
+        }
+      }
+      supportCount
+      dismissCount
+      commentCount
     }
   }
 `;
@@ -129,7 +129,12 @@ export const SUPPORT_PING = gql`
   }
 `;
 export const CREATE_PING = gql`
-  mutation createPing($body: String!, $imageUrl: String, $lat: Float!, $long: Float!) {
+  mutation createPing(
+    $body: String!
+    $imageUrl: String
+    $lat: Float!
+    $long: Float!
+  ) {
     createPing(body: $body, imageUrl: $imageUrl, lat: $lat, long: $long) {
       id
       body
@@ -185,6 +190,10 @@ export const NEW_PING_SUBSCRIPTION = gql`
       body
       imageUrl
       createdAt
+      location {
+        type
+        coordinates
+      }
       author {
         id
         imageUrl

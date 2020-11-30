@@ -1,4 +1,7 @@
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition} from '@apollo/client/utilities';
 import {
+  split,
   ApolloClient,
   InMemoryCache,
   createHttpLink,
@@ -21,7 +24,24 @@ const authLink = setContext(async () => {
 
 const authHttpLink = authLink.concat(httpLink);
 
+const wsLink = new WebSocketLink({
+  uri: "ws://localhost:8080/graphql",
+  options: { reconnect: true }
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  authHttpLink,
+)
+
 export const client = new ApolloClient({
-  link: authHttpLink,
+  link: splitLink,
   cache: new InMemoryCache(),
 });

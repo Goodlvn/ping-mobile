@@ -26,10 +26,12 @@ export default function Feed({ navigation, route }) {
 
   useEffect(() => {
     load();
-  }, [user]);
-  
-  useFocusEffect(React.useCallback(() => {
-    const unsubscribe = subscribeToMore({
+    const unsubscribe = newPingSubscription();
+    return () => unsubscribe()
+  }, []);
+
+  function newPingSubscription() {
+    return subscribeToMore({
       document: NEW_PING_SUBSCRIPTION,
       updateQuery: (prevPings, { subscriptionData }) => {
         if(!subscriptionData) return prevPings;
@@ -40,8 +42,7 @@ export default function Feed({ navigation, route }) {
         }
       }
     })
-    return () => unsubscribe()
-  }, []))
+  }
 
   async function load() {
     try {
