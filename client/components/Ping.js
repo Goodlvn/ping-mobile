@@ -8,7 +8,7 @@ import { useDashboardContext } from '../utils/useDashboardContext';
 
 export default function Ping({ item, user, children, background }) {
   const [_, dispatch] = useDashboardContext();
-  
+
   const displayProfile = (user) => {
     dispatch({type: Actions.SELECT_USER, payload: user})
   }
@@ -18,7 +18,7 @@ export default function Ping({ item, user, children, background }) {
             <TouchableOpacity underlayColor="white">
                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
                     {item.author.imageUrl ? <Avatar
-                        onPress={() => console.log("I am an avatart")}
+                        onPress={() => displayProfile(item.author)}
                         size="medium"
                         rounded
                         source={{
@@ -39,7 +39,7 @@ export default function Ping({ item, user, children, background }) {
                             marginLeft: 15,
                         }}
                     >
-                        <Text style={styles.username}>@{item.author.username}</Text>
+                        <Text style={styles.username} onPress={() => displayProfile(item.author)}>@{item.author.username}</Text>
                         <Text style={styles.time}> • {moment(Number(item.createdAt)).fromNow()}</Text>
                     </View>
                 </View>

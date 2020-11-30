@@ -3,9 +3,11 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { useAuthContext } from '../utils/useAuthContext';
+import { useDashboardContext } from '../utils/useDashboardContext';
 
 export default function Header({ navigation }) {
   const { user } = useAuthContext();
+  const [state] = useDashboardContext();
   const handlePress = () => {
     navigation.openDrawer();
   };
@@ -20,7 +22,7 @@ export default function Header({ navigation }) {
       />
       <View style={styles.headerTitle}>
         <Image style={styles.headerLogo} source={require("../assets/nodes.png")}/>
-        <Text style={styles.headerText}>{user.username}</Text>
+        <Text style={styles.headerText}>{state.selectedUser?.username || user.username}</Text>
       </View>
     </View>
   );
