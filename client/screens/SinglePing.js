@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList, ScrollView } from "react-native";
+import { StyleSheet, View, Text, FlatList, ScrollView, TextInput } from "react-native";
+import { Input, Button } from "react-native-elements";
 import { useQuery } from "@apollo/client";
 
 import Ping from "../components/Ping";
@@ -32,6 +33,15 @@ export default function SinglePing({ route, route: { params } }) {
           <View style={styles.commentsHeader}>
             <Text style={styles.commentsText}>Comments</Text>
           </View>
+          <View >
+            <TextInput
+              style={{ height: 50, borderColor: "#E0FFEE", borderWidth: 1 }}
+              placeholder="Got something to say?"
+              placeholderTextColor="#707070"
+              textAlign="center"
+            />
+            <Button title="Send" raised />
+          </View>
           <FlatList
             data={data.getPing.comments}
             renderItem={renderComments}
@@ -48,13 +58,14 @@ export default function SinglePing({ route, route: { params } }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E0FFEE",
     marginTop: 0,
   },
   commentsHeader: {
     alignItems: 'center',
     borderBottomColor: "#eee",
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: -8
+
   },
   commentsText: {
     marginVertical: 10,
